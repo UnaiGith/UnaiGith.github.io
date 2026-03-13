@@ -1,37 +1,3 @@
-// Animations on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe all fade-in elements
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
-
-// Observe project cards
-document.querySelectorAll('.project-card').forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    observer.observe(card);
-});
-
-// Add visible class after a small delay
-setTimeout(() => {
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.classList.add('visible');
-    });
-}, 100);
-
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -74,16 +40,6 @@ window.addEventListener('scroll', () => {
     if (hero) {
         hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
     }
-});
-
-// Add floating animation to icons on hover
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        const icon = card.querySelector('.card-icon');
-        if (icon) {
-            icon.style.animation = 'float 1s ease-in-out';
-        }
-    });
 });
 
 // Console message
